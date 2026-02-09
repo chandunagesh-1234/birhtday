@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aishwarya 💕</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    margin-top: 25px;
+    color: hotpink;
+    font-size: 2.3em;
+    text-shadow: 0 0 15px hotpink, 0 0 30px deeppink;
+}
+
+/* Wish Card */
+.card {
+    margin: 30px auto;
+    max-width: 330px;
+    background: rgba(255,182,193,0.15);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 25px rgba(255,105,180,0.5);
+    animation: fadeIn 2s ease;
+}
+
+.card p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Floating emojis */
+.float {
+    position: absolute;
+    bottom: -50px;
+    font-size: 28px;
+    animation: floatUp linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* 🎈 Balloons */
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 50px;
+    height: 65px;
+    background: radial-gradient(circle at 30% 30%, #fff, hotpink);
+    border-radius: 50% 50% 50% 50%;
+    animation: balloonUp linear infinite;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: white;
+    left: 50%;
+    top: 65px;
+}
+
+@keyframes balloonUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-130vh); opacity: 0; }
+}
+
+/* 🎆 Fireworks particles */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.4s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: translate(0,0) scale(1); opacity: 1; }
+    to { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Happy Birthday Aishwarya 🎉</h1>
+
+<div class="card">
+<p>
+Happy Birthday to my <b>favourite AISU</b> 💕<br><br>
+
+Life feels brighter, happier, and lighter just because you exist 🌸  
+Thank you for understanding my silence, laughing with me endlessly,
+and standing by me no matter what 🤍<br><br>
+
+You’re not just my best friend —  
+you’re family by heart 💞<br><br>
+
+May this year bring you smiles that stay,
+dreams that slowly come true,
+and happiness that never fades ✨<br><br>
+
+No matter where life takes us,  
+I’ll always be right here cheering for you 🫂<br><br>
+
+<b>Happy Birthday, bestie.</b><br>
+I love you endlessly 💖
+</p>
+</div>
+
+<!-- 🎵 Birthday Song -->
+<audio id="song" autoplay loop muted>
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 🔊 Enable sound on first click
+document.body.addEventListener("click", () => {
+    const song = document.getElementById("song");
+    song.muted = false;
+    song.play();
+}, { once: true });
+
+// 💕 Floating emojis
+const emojis = ["💕","💖","🎈","✨","🎉"];
+
+function createFloat() {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDuration = (6 + Math.random() * 6) + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 12000);
+}
+setInterval(createFloat, 500);
+
+// 🎈 Flying balloons
+function createBalloon() {
+    const b = document.createElement("div");
+    b.className = "balloon";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.animationDuration = (10 + Math.random() * 6) + "s";
+    b.style.background = `radial-gradient(circle at 30% 30%, #fff,
+        hsl(${Math.random()*360},80%,60%))`;
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 16000);
+}
+setInterval(createBalloon, 1200);
+
+// 🎆 Fireworks burst
+function fireworkBurst() {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight / 2;
+
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement("div");
+        p.className = "firework";
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        p.style.background = `hsl(${Math.random()*360},100%,60%)`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 120;
+        p.style.setProperty("--x", Math.cos(angle)*distance + "px");
+        p.style.setProperty("--y", Math.sin(angle)*distance + "px");
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1500);
+    }
+}
+setInterval(fireworkBurst, 2000);
+</script>
+
+</body>
+</html>
